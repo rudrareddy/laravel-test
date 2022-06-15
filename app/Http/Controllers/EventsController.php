@@ -8,7 +8,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Date;
-
+use DB;
 class EventsController extends BaseController
 {
     public function getWarmupEvents() {
@@ -101,7 +101,11 @@ class EventsController extends BaseController
      */
 
 
-
+    public function getFutureEventsWithWorkshops(){
+        $date= date('Y-m-d');
+        //return $date;
+         return Event::with('workshops_future')->get();
+    }
 
     /*
     Requirements:
@@ -177,5 +181,5 @@ class EventsController extends BaseController
     ```
      */
 
-  
+
 }
