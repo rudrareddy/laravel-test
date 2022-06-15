@@ -104,7 +104,7 @@ class EventsController extends BaseController
     public function getFutureEventsWithWorkshops(){
         $date= date('Y-m-d h:i:s');
         return Event::with('workshops')->whereHas('workshops',function($q) use($date){
-             $q->where('start','<=',$date);
+             $q->where('start','>=',$date);
          })->get();
     }
 
